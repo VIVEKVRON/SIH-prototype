@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-slate-950: #050505;
+  --color-sci-bg: #090a0f;
+  --color-sci-cyan: #00f0ff;
+  --color-sci-magenta: #ff003c;
+  --color-sci-blue: #0a40ff;
+  --font-sans: 'Rajdhani', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-[var(--color-sci-bg)] text-slate-100 antialiased overflow-hidden selection:bg-cyan-500/30 selection:text-cyan-200;
+    font-family: 'Rajdhani', sans-serif;
+  }
+}
+
+.sci-fi-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+}
+
+.sci-fi-panel {
+  @apply relative bg-black/60 backdrop-blur-md border border-cyan-500/20 shadow-[0_0_15px_rgba(0,240,255,0.05)];
+  clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+}
+
+.sci-fi-button {
+  @apply relative overflow-hidden transition-all duration-300 uppercase tracking-widest text-xs font-bold text-cyan-400 border border-cyan-500/50 bg-cyan-950/30 hover:bg-cyan-900/50 hover:shadow-[0_0_10px_rgba(0,240,255,0.4)];
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+
+.glitch-effect:hover {
+  animation: glitch 0.2s cubic-bezier(.25, .46, .45, .94) both infinite;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0) }
+  20% { transform: translate(-2px, 1px) }
+  40% { transform: translate(-1px, -1px) }
+  60% { transform: translate(2px, 1px) }
+  80% { transform: translate(1px, -1px) }
+  100% { transform: translate(0) }
+}
