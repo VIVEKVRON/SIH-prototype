@@ -59,9 +59,9 @@ const DUMMY_GEOJSON = {
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const [isProcessing, setIsProcessing] = useState(false);
-  const [geoData, setGeoData] = useState(DUMMY_GEOJSON);
+  const [geoData, setGeoData] = useState(null);
   const [hoveredFeatureId, setHoveredFeatureId] = useState(null);
-  const [uploadedImage, setUploadedImage] = useState("/sample-map.jpg");
+  const [uploadedImage, setUploadedImage] = useState(null);
 
   const handleFileUpload = async (file) => {
     setIsProcessing(true);
