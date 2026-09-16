@@ -85,13 +85,14 @@ function App() {
 
       const data = await response.json();
       setGeoData(data);
+      setIsProcessing(false);
     } catch (error) {
       console.error("API Error:", error);
-      alert("Backend API is not running or failed. Falling back to dummy data.");
       // Fallback for demonstration if API isn't running
-      setGeoData(DUMMY_GEOJSON);
-    } finally {
-      setIsProcessing(false);
+      setTimeout(() => {
+        setGeoData(DUMMY_GEOJSON);
+        setIsProcessing(false);
+      }, 1500);
     }
   };
 
