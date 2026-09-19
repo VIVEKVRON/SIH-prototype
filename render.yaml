@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: aerodristi-backend
+    env: docker
+    repo: https://github.com/VIVEKVRON/SIH-prototype
+    rootDir: backend-fastapi
+    plan: free
