@@ -76,7 +76,7 @@ function App() {
     formData.append("file", file);
 
     try {
-      const response = await fetch("http://localhost:8000/api/v1/extract-parcels", {
+      const response = await fetch("https://aerodristi-backend.onrender.com/api/v1/extract-parcels", {
         method: "POST",
         body: formData,
       });
