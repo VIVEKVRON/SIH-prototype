@@ -1,11 +1,47 @@
+import os
 import cv2
 import numpy as np
+from ultralytics import YOLO
+
+# Try to load the YOLO model. We do it globally so it's loaded once at startup.
+# Ensure the path is correct relative to where main.py runs
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "..", "weights", "yolo26n.pt")
+try:
+    model = YOLO(MODEL_PATH)
+    print(f"Successfully loaded YOLO model from {MODEL_PATH}")
+except Exception as e:
+    print(f"Warning: Failed to load YOLO model: {e}")
+    model = None
 
 def extract_contours(image: np.ndarray) -> list:
     """
     Runs computer vision pipeline to extract contours. 
-    Placeholder until SegFormer finetuned weights are loaded.
+    Uses the fine-tuned YOLO model if available.
     """
+    if model is not None:
+        # Run YOLO inference
+        results = model(image, verbose=False)
+        valid_contours = []
+        
+        # Parse masks from YOLO results
+        for r in results:
+            if r.masks is not None:
+                # r.masks.xy is a list of segments, each is an (N, 2) numpy array
+                for seg in r.masks.xy:
+                    # Convert float coordinates to integers
+                    seg_int = np.array(seg, dtype=np.int32)
+                    # Reshape to OpenCV contour format (N, 1, 2)
+                    contour = seg_int.reshape((-1, 1, 2))
+                    
+                    # Basic noise filtering
+                    if cv2.contourArea(contour) > 800:
+                        valid_contours.append(contour)
+                        
+        return valid_contours
+
+    # -------------------------------------------------------------
+    # FALLBACK OpenCV Logic (if model fails to load)
+    # -------------------------------------------------------------
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     
     # Improve contrast
@@ -29,13 +65,9 @@ def extract_contours(image: np.ndarray) -> list:
     valid_contours = []
     for cnt in contours:
         area = cv2.contourArea(cnt)
-        # Filter tiny noise and massive background contours
         if 800 < area < 100000:
-            # Approximate the contour to a polygon to make it more "building-like"
             epsilon = 0.02 * cv2.arcLength(cnt, True)
             approx = cv2.approxPolyDP(cnt, epsilon, True)
-            
-            # Ensure it has a reasonable number of vertices (like a building)
             if 4 <= len(approx) <= 12:
                 valid_contours.append(approx)
                 
