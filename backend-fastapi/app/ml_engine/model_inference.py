@@ -5,7 +5,7 @@ from ultralytics import YOLO
 
 # Try to load the YOLO model. We do it globally so it's loaded once at startup.
 # Ensure the path is correct relative to where main.py runs
-MODEL_PATH = os.path.join(os.path.dirname(__file__), "..", "weights", "yolo26n.pt")
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "..", "weights", "best.pt")
 try:
     model = YOLO(MODEL_PATH)
     print(f"Successfully loaded YOLO model from {MODEL_PATH}")
