@@ -4,7 +4,7 @@ from shapely.geometry import Polygon
 def simplify_contour_to_polygon(contour) -> Polygon:
     """Applies Douglas-Peucker algorithm to simplify a contour to an orthogonal-like polygon."""
     peri = cv2.arcLength(contour, True)
-    epsilon = 0.035 * peri  # Sharp orthogonal simplification
+    epsilon = 0.005 * peri  # Precise orthogonal simplification
     approx = cv2.approxPolyDP(contour, epsilon, True)
     
     if len(approx) < 3:

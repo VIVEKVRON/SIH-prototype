@@ -33,8 +33,9 @@ def extract_contours(image: np.ndarray) -> list:
                     # Reshape to OpenCV contour format (N, 1, 2)
                     contour = seg_int.reshape((-1, 1, 2))
                     
-                    # Basic noise filtering
-                    if cv2.contourArea(contour) > 800:
+                    # Filter noise and massive hallucinations
+                    area = cv2.contourArea(contour)
+                    if 100 < area < 10000:
                         valid_contours.append(contour)
                         
         return valid_contours
