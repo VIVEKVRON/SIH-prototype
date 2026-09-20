@@ -19,7 +19,7 @@ def create_feature_collection(features: list, width: int, height: int) -> dict:
         "metadata": {
             "image_dimensions": {"width": width, "height": height},
             "total_parcels_detected": len(features),
-            "algorithm": "SegFormer-Orthogonal-DP-v2"
+            "algorithm": "OpenCV-Forced-V3"
         },
         "features": features
     }
