@@ -4,7 +4,7 @@ import { Activity, Target, Cpu, Map } from 'lucide-react';
 import UploadDropzone from '../ui/UploadDropzone';
 import FeatureMetricsCard from '../ui/FeatureMetricsCard';
 
-export default function SidebarDashboard({ isProcessing, geoData, onUpload, hoveredFeatureId }) {
+export default function SidebarDashboard({ isProcessing, geoData, onUpload, hoveredFeatureId, onDemoLoad }) {
   
   const activeFeature = useMemo(() => {
     if (!geoData || !geoData.features) return null;
@@ -62,6 +62,13 @@ export default function SidebarDashboard({ isProcessing, geoData, onUpload, hove
               </h2>
             </div>
             <UploadDropzone onUpload={onUpload} isProcessing={isProcessing} />
+            <button 
+              onClick={onDemoLoad}
+              disabled={isProcessing}
+              className="mt-3 w-full bg-slate-900 border border-emerald-500/50 hover:bg-emerald-900/30 text-emerald-400 text-[10px] font-mono tracking-widest uppercase py-2 transition-all disabled:opacity-50"
+            >
+              [ Demo Perfect Parcel Mapping ]
+            </button>
           </div>
 
           {/* Dynamic Metrics */}

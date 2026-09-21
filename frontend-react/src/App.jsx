@@ -5,6 +5,7 @@ import GISCanvas from './components/map/GISCanvas';
 import LandingPage from './components/layout/LandingPage';
 import TeamPage from './components/layout/TeamPage';
 import Navbar from './components/layout/Navbar';
+import { SAMPLE_GEOJSON } from './data/sampleGeoJson';
 
 // Dummy GeoJSON data to simulate backend response
 const DUMMY_GEOJSON = {
@@ -98,6 +99,17 @@ function App() {
     }
   };
 
+  const handleDemoLoad = () => {
+    setIsProcessing(true);
+    setGeoData(null);
+    setUploadedImage('/sample_drone_map.jpg');
+    
+    setTimeout(() => {
+      setGeoData(SAMPLE_GEOJSON);
+      setIsProcessing(false);
+    }, 1200);
+  };
+
   return (
     <>
       <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} />
@@ -123,6 +135,7 @@ function App() {
                 geoData={geoData} 
                 onUpload={handleFileUpload} 
                 hoveredFeatureId={hoveredFeatureId}
+                onDemoLoad={handleDemoLoad}
               />
             </div>
 
