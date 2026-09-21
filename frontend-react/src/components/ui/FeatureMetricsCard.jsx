@@ -64,6 +64,18 @@ export default function FeatureMetricsCard({ feature }) {
         {/* Data Grid */}
         <div className="bg-[#090a0f] border border-slate-800 p-1">
           <MetricRow 
+            icon={Hash} 
+            label="Owner" 
+            value={props.owner_name || "Rahul Sharma"} 
+            highlight={false}
+          />
+          <MetricRow 
+            icon={Hash} 
+            label="Address" 
+            value={(props.address || "1st Main, Indiranagar").substring(0, 15) + '...'} 
+            highlight={false}
+          />
+          <MetricRow 
             icon={SquareAsterisk} 
             label="Area Scope" 
             value={props.area_sqm} 

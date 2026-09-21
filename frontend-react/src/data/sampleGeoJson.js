@@ -15,6 +15,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-101",
         "feature_type": "Building Footprint",
+        "owner_name": "Rahul Sharma",
+        "address": "#26, 12th Cross, HSR Layout",
         "area_sqm": 94.5,
         "perimeter_m": 39,
         "regularity_score": 0.95,
@@ -55,6 +57,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-102",
         "feature_type": "Building Footprint",
+        "owner_name": "Priya Patel",
+        "address": "#296, 4th Block, Koramangala",
         "area_sqm": 94.5,
         "perimeter_m": 39,
         "regularity_score": 0.95,
@@ -95,6 +99,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-103",
         "feature_type": "Building Footprint",
+        "owner_name": "Amit Kumar",
+        "address": "#64, 4th Block, Koramangala",
         "area_sqm": 94.5,
         "perimeter_m": 39,
         "regularity_score": 0.95,
@@ -135,6 +141,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-104",
         "feature_type": "Building Footprint",
+        "owner_name": "Sneha Reddy",
+        "address": "#291, Andheri East, MIDC",
         "area_sqm": 94.5,
         "perimeter_m": 39,
         "regularity_score": 0.95,
@@ -175,6 +183,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-105",
         "feature_type": "Building Footprint",
+        "owner_name": "Vikram Singh",
+        "address": "#446, Bandra West, Linking Rd",
         "area_sqm": 94.5,
         "perimeter_m": 39,
         "regularity_score": 0.95,
@@ -215,6 +225,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-106",
         "feature_type": "Building Footprint",
+        "owner_name": "Anjali Gupta",
+        "address": "#314, JP Nagar 7th Phase",
         "area_sqm": 94.5,
         "perimeter_m": 39,
         "regularity_score": 0.95,
@@ -255,6 +267,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-107",
         "feature_type": "Building Footprint",
+        "owner_name": "Karthik Iyer",
+        "address": "#262, 12th Cross, HSR Layout",
         "area_sqm": 94.5,
         "perimeter_m": 39,
         "regularity_score": 0.95,
@@ -295,6 +309,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-108",
         "feature_type": "Building Footprint",
+        "owner_name": "Neha Desai",
+        "address": "#168, 1st Main, Indiranagar",
         "area_sqm": 94.5,
         "perimeter_m": 39,
         "regularity_score": 0.95,
@@ -335,6 +351,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-109",
         "feature_type": "Building Footprint",
+        "owner_name": "Arjun Nair",
+        "address": "#451, Jayanagar 4th Block",
         "area_sqm": 81,
         "perimeter_m": 36,
         "regularity_score": 0.95,
@@ -375,6 +393,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-110",
         "feature_type": "Building Footprint",
+        "owner_name": "Pooja Menon",
+        "address": "#6, 1st Main, Indiranagar",
         "area_sqm": 81,
         "perimeter_m": 36,
         "regularity_score": 0.95,
@@ -415,6 +435,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-111",
         "feature_type": "Building Footprint",
+        "owner_name": "Suresh Rao",
+        "address": "#450, Malleswaram 8th Cross",
         "area_sqm": 81,
         "perimeter_m": 36,
         "regularity_score": 0.95,
@@ -455,6 +477,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-112",
         "feature_type": "Building Footprint",
+        "owner_name": "Deepa Joshi",
+        "address": "#138, Andheri East, MIDC",
         "area_sqm": 81,
         "perimeter_m": 36,
         "regularity_score": 0.95,
@@ -495,6 +519,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-113",
         "feature_type": "Building Footprint",
+        "owner_name": "Ramesh Babu",
+        "address": "#265, Banjara Hills, Rd No 12",
         "area_sqm": 94.5,
         "perimeter_m": 39,
         "regularity_score": 0.95,
@@ -535,6 +561,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-114",
         "feature_type": "Building Footprint",
+        "owner_name": "Swati Kulkarni",
+        "address": "#348, Whitefield Main Rd",
         "area_sqm": 94.5,
         "perimeter_m": 39,
         "regularity_score": 0.95,
@@ -575,6 +603,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-115",
         "feature_type": "Building Footprint",
+        "owner_name": "Manoj Tiwari",
+        "address": "#242, Andheri East, MIDC",
         "area_sqm": 94.5,
         "perimeter_m": 39,
         "regularity_score": 0.95,
@@ -615,6 +645,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-116",
         "feature_type": "Building Footprint",
+        "owner_name": "Kavita Chawla",
+        "address": "#41, Bandra West, Linking Rd",
         "area_sqm": 94.5,
         "perimeter_m": 39,
         "regularity_score": 0.95,
@@ -655,6 +687,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-117",
         "feature_type": "Building Footprint",
+        "owner_name": "Rajesh Khanna",
+        "address": "#449, MG Road",
         "area_sqm": 81,
         "perimeter_m": 36,
         "regularity_score": 0.95,
@@ -695,6 +729,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-118",
         "feature_type": "Building Footprint",
+        "owner_name": "Meera Rajput",
+        "address": "#237, Electronic City Ph-1",
         "area_sqm": 81,
         "perimeter_m": 36,
         "regularity_score": 0.95,
@@ -735,6 +771,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-119",
         "feature_type": "Building Footprint",
+        "owner_name": "Sunil Shetty",
+        "address": "#494, Jayanagar 4th Block",
         "area_sqm": 81,
         "perimeter_m": 36,
         "regularity_score": 0.95,
@@ -775,6 +813,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-120",
         "feature_type": "Building Footprint",
+        "owner_name": "Ritu Varma",
+        "address": "#337, JP Nagar 7th Phase",
         "area_sqm": 81,
         "perimeter_m": 36,
         "regularity_score": 0.95,
@@ -815,6 +855,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-121",
         "feature_type": "Building Footprint",
+        "owner_name": "Sanjay Dutt",
+        "address": "#259, Whitefield Main Rd",
         "area_sqm": 94.5,
         "perimeter_m": 39,
         "regularity_score": 0.95,
@@ -855,6 +897,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-122",
         "feature_type": "Building Footprint",
+        "owner_name": "Divya Bharti",
+        "address": "#477, Banjara Hills, Rd No 12",
         "area_sqm": 94.5,
         "perimeter_m": 39,
         "regularity_score": 0.95,
@@ -895,6 +939,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-123",
         "feature_type": "Building Footprint",
+        "owner_name": "Ashok Kumar",
+        "address": "#226, 12th Cross, HSR Layout",
         "area_sqm": 94.5,
         "perimeter_m": 39,
         "regularity_score": 0.95,
@@ -935,6 +981,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-124",
         "feature_type": "Building Footprint",
+        "owner_name": "Rekha Ganesan",
+        "address": "#50, Banjara Hills, Rd No 12",
         "area_sqm": 94.5,
         "perimeter_m": 39,
         "regularity_score": 0.95,
@@ -975,6 +1023,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-125",
         "feature_type": "Building Footprint",
+        "owner_name": "Anand Mahindra",
+        "address": "#123, Jubilee Hills",
         "area_sqm": 94.5,
         "perimeter_m": 39,
         "regularity_score": 0.95,
@@ -1015,6 +1065,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-126",
         "feature_type": "Building Footprint",
+        "owner_name": "Gita Gopinath",
+        "address": "#38, T Nagar, Pondy Bazaar",
         "area_sqm": 94.5,
         "perimeter_m": 39,
         "regularity_score": 0.95,
@@ -1055,6 +1107,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-127",
         "feature_type": "Building Footprint",
+        "owner_name": "Sachin Tendulkar",
+        "address": "#217, T Nagar, Pondy Bazaar",
         "area_sqm": 94.5,
         "perimeter_m": 39,
         "regularity_score": 0.95,
@@ -1095,6 +1149,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-128",
         "feature_type": "Building Footprint",
+        "owner_name": "Saina Nehwal",
+        "address": "#279, Electronic City Ph-1",
         "area_sqm": 94.5,
         "perimeter_m": 39,
         "regularity_score": 0.95,
@@ -1135,6 +1191,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-129",
         "feature_type": "Building Footprint",
+        "owner_name": "Virat Kohli",
+        "address": "#63, MG Road",
         "area_sqm": 81,
         "perimeter_m": 36,
         "regularity_score": 0.95,
@@ -1175,6 +1233,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-130",
         "feature_type": "Building Footprint",
+        "owner_name": "Anushka Sharma",
+        "address": "#364, Jayanagar 4th Block",
         "area_sqm": 81,
         "perimeter_m": 36,
         "regularity_score": 0.95,
@@ -1215,6 +1275,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-131",
         "feature_type": "Building Footprint",
+        "owner_name": "Rohit Sharma",
+        "address": "#346, Brigade Road",
         "area_sqm": 81,
         "perimeter_m": 36,
         "regularity_score": 0.95,
@@ -1255,6 +1317,8 @@ export const SAMPLE_GEOJSON = {
       "properties": {
         "parcel_id": "KA-BLR-132",
         "feature_type": "Building Footprint",
+        "owner_name": "Ritika Sajdeh",
+        "address": "#172, Banjara Hills, Rd No 12",
         "area_sqm": 81,
         "perimeter_m": 36,
         "regularity_score": 0.95,

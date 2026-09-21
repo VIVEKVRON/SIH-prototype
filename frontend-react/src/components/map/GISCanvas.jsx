@@ -110,32 +110,39 @@ export default function GISCanvas({ geoData, hoveredFeatureId, setHoveredFeature
                 // Conversions
                 const acres = (feature.properties.area_sqm * 0.000247105).toFixed(2);
                 const pId = feature.properties.parcel_id.replace("KA-BLR-", "1245-78-");
+                const ownerName = feature.properties.owner_name || "Rahul Sharma";
+                const propertyAddress = feature.properties.address || "1st Main, Indiranagar, Bangalore";
                 
                 return (
                   <foreignObject 
                     key={`tooltip-${feature.id}`} 
                     x={centroid.x - 125} 
-                    y={centroid.y - 140} 
-                    width="250" 
-                    height="120"
+                    y={centroid.y - 150} 
+                    width="260" 
+                    height="140"
                     className="pointer-events-none overflow-visible"
                   >
                     <div className="relative bg-white rounded-md shadow-2xl border border-slate-200 flex flex-col font-sans text-slate-800 text-xs">
-                      <div className="bg-[#1e63a1] text-white font-semibold py-2 px-3 rounded-t-md">
-                        PARCEL {pId}
+                      <div className="bg-[#1e63a1] text-white font-semibold py-2 px-3 rounded-t-md flex justify-between">
+                        <span>PARCEL {pId}</span>
+                        <span className="text-emerald-300">₹{feature.properties.assessed_tax_inr} Tax</span>
                       </div>
                       <div className="p-3 flex flex-col gap-1.5 bg-white rounded-b-md">
-                        <div className="flex justify-between">
-                          <span className="font-bold">Property Address:</span>
-                          <span>4321 Oak Ave</span>
+                        <div className="flex justify-between border-b border-slate-100 pb-1">
+                          <span className="font-bold flex items-center gap-1">👤 Owner:</span>
+                          <span className="text-right">{ownerName}</span>
                         </div>
-                        <div className="flex justify-between">
+                        <div className="flex justify-between border-b border-slate-100 pb-1">
+                          <span className="font-bold">📍 Address:</span>
+                          <span className="text-right max-w-[120px] truncate" title={propertyAddress}>{propertyAddress}</span>
+                        </div>
+                        <div className="flex justify-between border-b border-slate-100 pb-1">
                           <span className="font-bold flex items-center gap-1">📏 Acreage:</span>
-                          <span>{acres} acres</span>
+                          <span className="text-right">{acres} acres</span>
                         </div>
                         <div className="flex justify-between">
                           <span className="font-bold flex items-center gap-1">🏠 Parcel ID:</span>
-                          <span>{pId}</span>
+                          <span className="text-right">{pId}</span>
                         </div>
                       </div>
                       {/* Tooltip arrow */}
