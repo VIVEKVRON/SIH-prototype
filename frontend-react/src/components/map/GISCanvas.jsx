@@ -59,22 +59,21 @@ export default function GISCanvas({ geoData, hoveredFeatureId, setHoveredFeature
         >
           {geoData && (
             <g>
-              {geoData.features.map((feature) => {
+              {/* Render Valid Parcels */}
+              {geoData.valid_parcels?.features?.map((feature) => {
                 const isHovered = hoveredFeatureId === feature.id;
                 
-                // Handle both Polygon and MultiPolygon
                 const isMulti = feature.geometry.type === "MultiPolygon";
                 const polygons = isMulti ? feature.geometry.coordinates : [feature.geometry.coordinates];
                 
                 return (
-                  <g key={feature.id}>
+                  <g key={`valid-${feature.id}`}>
                     {polygons.map((ring, idx) => {
                       const coords = ring[0];
                       const pointsString = coords.map(pt => `${pt[0]},${pt[1]}`).join(" ");
                       
-                      // Match user's reference design
-                      const strokeColor = isHovered ? "#fde047" : "#1d4ed8"; // Yellow highlight, Blue default
-                      const fillColor = isHovered ? "#fef08a" : "transparent"; // Light yellow fill when hovered
+                      const strokeColor = isHovered ? "#2dd4bf" : "#10b981"; // Cyan highlight, Green default
+                      const fillColor = isHovered ? "#a7f3d0" : "transparent"; 
                       const fillOpacity = isHovered ? 0.4 : 0;
                       
                       return (
@@ -82,14 +81,41 @@ export default function GISCanvas({ geoData, hoveredFeatureId, setHoveredFeature
                           key={`${feature.id}-${idx}`}
                           points={pointsString}
                           className="cursor-pointer transition-all duration-300 ease-out"
-                          style={{
-                            fill: fillColor,
-                            fillOpacity: fillOpacity,
-                            stroke: strokeColor,
-                            strokeWidth: isHovered ? 5 : 2,
-                            strokeLinejoin: "round",
-                            vectorEffect: "non-scaling-stroke",
-                          }}
+                          style={{ fill: fillColor, fillOpacity: fillOpacity, stroke: strokeColor, strokeWidth: isHovered ? 4 : 2, strokeLinejoin: "round" }}
+                          onMouseEnter={() => setHoveredFeatureId(feature.id)}
+                          onMouseLeave={() => setHoveredFeatureId(null)}
+                        />
+                      );
+                    })}
+                  </g>
+                );
+              })}
+
+              {/* Render Errored Parcels */}
+              {geoData.validation_errors?.map((err) => {
+                const feature = err.feature;
+                if (!feature) return null;
+                const isHovered = hoveredFeatureId === feature.id;
+                
+                const isMulti = feature.geometry.type === "MultiPolygon";
+                const polygons = isMulti ? feature.geometry.coordinates : [feature.geometry.coordinates];
+                
+                return (
+                  <g key={`error-${feature.id}`}>
+                    {polygons.map((ring, idx) => {
+                      const coords = ring[0];
+                      const pointsString = coords.map(pt => `${pt[0]},${pt[1]}`).join(" ");
+                      
+                      const strokeColor = isHovered ? "#fde047" : "#ef4444"; // Yellow highlight, Red default
+                      const fillColor = isHovered ? "#fef08a" : "#fee2e2"; 
+                      const fillOpacity = isHovered ? 0.5 : 0.2;
+                      
+                      return (
+                        <polygon
+                          key={`err-${feature.id}-${idx}`}
+                          points={pointsString}
+                          className="cursor-pointer transition-all duration-300 ease-out"
+                          style={{ fill: fillColor, fillOpacity: fillOpacity, stroke: strokeColor, strokeWidth: isHovered ? 4 : 2, strokeDasharray: "4 2", strokeLinejoin: "round" }}
                           onMouseEnter={() => setHoveredFeatureId(feature.id)}
                           onMouseLeave={() => setHoveredFeatureId(null)}
                         />
@@ -100,8 +126,8 @@ export default function GISCanvas({ geoData, hoveredFeatureId, setHoveredFeature
               })}
               
               {/* Render Tooltip on top if hovered */}
-              {hoveredFeatureId && geoData.features.map(feature => {
-                if (feature.id !== hoveredFeatureId) return null;
+              {hoveredFeatureId && (geoData.valid_parcels?.features || []).concat(geoData.validation_errors?.map(e => e.feature) || []).map(feature => {
+                if (!feature || feature.id !== hoveredFeatureId) return null;
                 
                 const isMulti = feature.geometry.type === "MultiPolygon";
                 const coords = isMulti ? feature.geometry.coordinates[0][0] : feature.geometry.coordinates[0];
@@ -113,21 +139,32 @@ export default function GISCanvas({ geoData, hoveredFeatureId, setHoveredFeature
                 const ownerName = feature.properties.owner_name || "Rahul Sharma";
                 const propertyAddress = feature.properties.address || "1st Main, Indiranagar, Bangalore";
                 
+                // Check if this feature has an error
+                const validationError = geoData.validation_errors?.find(e => e.parcelId === feature.id || e.feature?.id === feature.id);
+                const headerColor = validationError ? "bg-red-600" : "bg-[#1e63a1]";
+                
                 return (
                   <foreignObject 
                     key={`tooltip-${feature.id}`} 
                     x={centroid.x - 125} 
                     y={centroid.y - 150} 
                     width="260" 
-                    height="140"
+                    height="170"
                     className="pointer-events-none overflow-visible"
                   >
                     <div className="relative bg-white rounded-md shadow-2xl border border-slate-200 flex flex-col font-sans text-slate-800 text-xs">
-                      <div className="bg-[#1e63a1] text-white font-semibold py-2 px-3 rounded-t-md flex justify-between">
+                      <div className={`${headerColor} text-white font-semibold py-2 px-3 rounded-t-md flex justify-between`}>
                         <span>PARCEL {pId}</span>
-                        <span className="text-emerald-300">₹{feature.properties.assessed_tax_inr} Tax</span>
+                        <span className={validationError ? "text-yellow-200" : "text-emerald-300"}>
+                          {validationError ? "INVALID" : "₹" + feature.properties.assessed_tax_inr}
+                        </span>
                       </div>
                       <div className="p-3 flex flex-col gap-1.5 bg-white rounded-b-md">
+                        {validationError && (
+                          <div className="text-[10px] text-red-600 font-bold border-b border-red-100 pb-1 mb-1">
+                            ⚠️ {validationError.rule}: {validationError.message}
+                          </div>
+                        )}
                         <div className="flex justify-between border-b border-slate-100 pb-1">
                           <span className="font-bold flex items-center gap-1">👤 Owner:</span>
                           <span className="text-right">{ownerName}</span>

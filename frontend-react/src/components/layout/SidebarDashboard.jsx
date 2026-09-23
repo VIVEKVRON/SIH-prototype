@@ -1,17 +1,22 @@
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Activity, Target, Cpu, Map } from 'lucide-react';
+import { Activity, Target, Cpu, AlertTriangle } from 'lucide-react';
 import UploadDropzone from '../ui/UploadDropzone';
 import FeatureMetricsCard from '../ui/FeatureMetricsCard';
 
-export default function SidebarDashboard({ isProcessing, geoData, onUpload, hoveredFeatureId, onDemoLoad }) {
+export default function SidebarDashboard({ isProcessing, geoData, onUpload, hoveredFeatureId, setHoveredFeatureId, onDemoLoad }) {
   
   const activeFeature = useMemo(() => {
-    if (!geoData || !geoData.features) return null;
+    if (!geoData) return null;
+    const valid = geoData.valid_parcels?.features || [];
+    const invalid = (geoData.validation_errors || []).map(e => e.feature).filter(Boolean);
+    const allFeatures = [...valid, ...invalid];
+    
+    if (allFeatures.length === 0) return null;
     if (hoveredFeatureId) {
-      return geoData.features.find(f => f.id === hoveredFeatureId) || geoData.features[0];
+      return allFeatures.find(f => f.id === hoveredFeatureId) || allFeatures[0];
     }
-    return geoData.features[0];
+    return allFeatures[0];
   }, [geoData, hoveredFeatureId]);
 
   return (
@@ -71,6 +76,29 @@ export default function SidebarDashboard({ isProcessing, geoData, onUpload, hove
             </button>
           </div>
 
+          {/* Surveyor Audit Feed */}
+          {geoData && geoData.validation_errors && geoData.validation_errors.length > 0 && (
+            <div className="mt-2 border-t border-red-500/30 pt-4">
+              <h2 className="text-xs font-bold text-red-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                <AlertTriangle className="w-4 h-4 text-red-500" />
+                Surveyor Audit Feed
+              </h2>
+              <div className="space-y-2 max-h-[200px] overflow-y-auto custom-scrollbar pr-1">
+                {geoData.validation_errors.map((err, idx) => (
+                  <div 
+                    key={idx} 
+                    className="bg-red-950/30 border border-red-500/20 p-2 rounded text-xs cursor-pointer hover:bg-red-900/40 transition-colors"
+                    onMouseEnter={() => setHoveredFeatureId?.(err.parcelId)}
+                    onMouseLeave={() => setHoveredFeatureId?.(null)}
+                  >
+                    <div className="font-bold text-red-400 font-mono mb-1">{err.parcelId} // {err.rule}</div>
+                    <div className="text-red-200/70 leading-tight">{err.message}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Dynamic Metrics */}
           {geoData && activeFeature && (
             <motion.div
@@ -84,7 +112,7 @@ export default function SidebarDashboard({ isProcessing, geoData, onUpload, hove
                   Tactical Analysis
                 </h2>
                 <span className="text-[10px] text-[#00f0ff] font-mono bg-[#00f0ff]/10 px-2 py-0.5 border border-[#00f0ff]/30">
-                  {geoData.metadata.total_parcels_detected} TGT
+                  {geoData.valid_parcels?.features?.length || 0} TGT
                 </span>
               </div>
               

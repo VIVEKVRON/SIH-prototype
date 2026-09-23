@@ -72,12 +72,12 @@ function App() {
     const imageUrl = URL.createObjectURL(file);
     setUploadedImage(imageUrl);
     
-    // Call the actual backend API
+    // Call the Spring Boot API Orchestrator
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append("drone_image", file);
 
     try {
-      const response = await fetch("https://aerodristi-backend.onrender.com/api/v1/extract-parcels", {
+      const response = await fetch("http://localhost:8080/api/v1/cadastre/generate", {
         method: "POST",
         body: formData,
       });
@@ -135,6 +135,7 @@ function App() {
                 geoData={geoData} 
                 onUpload={handleFileUpload} 
                 hoveredFeatureId={hoveredFeatureId}
+                setHoveredFeatureId={setHoveredFeatureId}
                 onDemoLoad={handleDemoLoad}
               />
             </div>
