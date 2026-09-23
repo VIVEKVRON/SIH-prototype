@@ -86,7 +86,8 @@ function App() {
     formData.append("drone_image", file);
 
     try {
-      const response = await fetch("http://localhost:8080/api/v1/cadastre/generate", {
+      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:8080";
+      const response = await fetch(`${apiUrl}/api/v1/cadastre/generate`, {
         method: "POST",
         body: formData,
       });
