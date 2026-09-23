@@ -9,49 +9,58 @@ import { SAMPLE_GEOJSON } from './data/sampleGeoJson';
 
 // Dummy GeoJSON data to simulate backend response
 const DUMMY_GEOJSON = {
-  type: "FeatureCollection",
   metadata: {
     image_dimensions: { width: 1024, height: 1024 },
     total_parcels_detected: 2,
     algorithm: "SegFormer-Orthogonal-DP-v2"
   },
-  features: [
-    {
-      type: "Feature",
-      id: "PARCEL-KA-101",
-      properties: {
-        parcel_id: "KA-BLR-101",
-        feature_type: "Building Footprint",
-        area_sqm: 145.2,
-        perimeter_m: 54.3,
-        regularity_score: 0.89,
-        status: "Demarcated",
-        assessed_tax_inr: 2686
-      },
-      geometry: {
-        type: "Polygon",
-        coordinates: [
-          [[150, 200], [400, 200], [400, 450], [150, 450], [150, 200]]
-        ]
+  valid_parcels: {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        id: "PARCEL-KA-101",
+        properties: {
+          parcel_id: "KA-BLR-101",
+          feature_type: "Building Footprint",
+          area_sqm: 145.2,
+          perimeter_m: 54.3,
+          regularity_score: 0.89,
+          status: "Demarcated",
+          assessed_tax_inr: 2686
+        },
+        geometry: {
+          type: "Polygon",
+          coordinates: [
+            [[150, 200], [400, 200], [400, 450], [150, 450], [150, 200]]
+          ]
+        }
       }
-    },
+    ]
+  },
+  validation_errors: [
     {
-      type: "Feature",
-      id: "PARCEL-KA-102",
-      properties: {
-        parcel_id: "KA-BLR-102",
-        feature_type: "Land Boundary",
-        area_sqm: 450.5,
-        perimeter_m: 110.2,
-        regularity_score: 0.45,
-        status: "Demarcated",
-        assessed_tax_inr: 8334
-      },
-      geometry: {
-        type: "Polygon",
-        coordinates: [
-          [[500, 500], [800, 550], [750, 800], [450, 750], [500, 500]]
-        ]
+      parcelId: "PARCEL-KA-102",
+      rule: "OVERLAP_CHECK",
+      message: "Topological conflict detected with adjacent parcel. Please verify boundaries.",
+      feature: {
+        type: "Feature",
+        id: "PARCEL-KA-102",
+        properties: {
+          parcel_id: "KA-BLR-102",
+          feature_type: "Land Boundary",
+          area_sqm: 450.5,
+          perimeter_m: 110.2,
+          regularity_score: 0.45,
+          status: "Flagged",
+          assessed_tax_inr: 8334
+        },
+        geometry: {
+          type: "Polygon",
+          coordinates: [
+            [[500, 500], [800, 550], [750, 800], [450, 750], [500, 500]]
+          ]
+        }
       }
     }
   ]

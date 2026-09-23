@@ -1,5 +1,4 @@
 export const SAMPLE_GEOJSON = {
-  "type": "FeatureCollection",
   "metadata": {
     "image_dimensions": {
       "width": 1024,
@@ -8,7 +7,9 @@ export const SAMPLE_GEOJSON = {
     "total_parcels_detected": 32,
     "algorithm": "Demo-Perfect-Match"
   },
-  "features": [
+  "valid_parcels": {
+    "type": "FeatureCollection",
+    "features": [
     {
       "type": "Feature",
       "id": "PARCEL-KA-101",
@@ -1351,6 +1352,40 @@ export const SAMPLE_GEOJSON = {
             ]
           ]
         ]
+      }
+    }
+  ]},
+  "validation_errors": [
+    {
+      "parcelId": "PARCEL-KA-999",
+      "rule": "OVERLAP_CHECK",
+      "message": "Topological conflict detected with adjacent parcel KA-BLR-132. Overlap area exceeds 2.4 sqm.",
+      "feature": {
+        "type": "Feature",
+        "id": "PARCEL-KA-999",
+        "properties": {
+          "parcel_id": "KA-BLR-999",
+          "feature_type": "Building Footprint",
+          "owner_name": "Conflict Zone",
+          "address": "Unregistered Illegal Extension",
+          "area_sqm": 45,
+          "perimeter_m": 25,
+          "regularity_score": 0.45,
+          "status": "Flagged",
+          "assessed_tax_inr": 0
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [880, 890],
+              [940, 890],
+              [940, 930],
+              [880, 930],
+              [880, 890]
+            ]
+          ]
+        }
       }
     }
   ]
